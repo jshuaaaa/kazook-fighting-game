@@ -75,6 +75,10 @@ const keys = {
         pressed: false
     },
 
+    w: {
+        pressed: false
+    }
+
 }
 
 
@@ -98,6 +102,11 @@ function animate() {
         player.velocity.x = 5
     }
 
+    if(keys.w.pressed && player.lastKey === 'w') {
+        player.velocity.y != -5
+    }
+
+
 //enemy movement
 
     if(keys.ArrowLeft.pressed && enemy.lastKey === 'ArrowLeft') {
@@ -106,6 +115,7 @@ function animate() {
     }   else if (keys.ArrowRight.pressed && enemy.lastKey === 'ArrowRight') {
         enemy.velocity.x = 5
     }
+
 }
 
 animate()
@@ -121,7 +131,16 @@ window.addEventListener('keydown', (event) => {
         player.lastKey = 'a'
         break
         case 'w':
-        player.velocity.y = -15
+            player.lastKey = 'w'
+
+            if(player.velocity.y === 0 && player.lastKey === 'w') {
+                player.velocity.y = -15
+            } else
+            player.velocity.y = 0
+
+            keys.w.pressed = true
+
+    
         break
 
 
@@ -158,4 +177,4 @@ window.addEventListener('keyup', (event) => {
     }
 })
 
-console.log(keys);
+console.log(keys)
